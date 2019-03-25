@@ -15,7 +15,6 @@ public class MainMenuFragment extends BaseEditFragment implements View.OnClickLi
     public static final String TAG = MainMenuFragment.class.getName();
     private View mainView;
 
-    private View stickerBtn;
     private View fliterBtn;
     private View cropBtn;
     private View rotateBtn;
@@ -47,7 +46,6 @@ public class MainMenuFragment extends BaseEditFragment implements View.OnClickLi
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        stickerBtn = mainView.findViewById(R.id.btn_stickers);
         fliterBtn = mainView.findViewById(R.id.btn_filter);
         cropBtn = mainView.findViewById(R.id.btn_crop);
         rotateBtn = mainView.findViewById(R.id.btn_rotate);
@@ -57,7 +55,6 @@ public class MainMenuFragment extends BaseEditFragment implements View.OnClickLi
         mBrightnessBtn = mainView.findViewById(R.id.btn_brightness);
         mSaturationBtn = mainView.findViewById(R.id.btn_contrast);
 
-        stickerBtn.setOnClickListener(this);
         fliterBtn.setOnClickListener(this);
         cropBtn.setOnClickListener(this);
         rotateBtn.setOnClickListener(this);
@@ -80,9 +77,7 @@ public class MainMenuFragment extends BaseEditFragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if (v == stickerBtn) {
-            onStickClick();
-        } else if (v == fliterBtn) {
+        if (v == fliterBtn) {
             onFilterClick();
         } else if (v == cropBtn) {
             onCropClick();
@@ -99,11 +94,6 @@ public class MainMenuFragment extends BaseEditFragment implements View.OnClickLi
         } else if (v == mSaturationBtn) {
             onContrastClick();
         }
-    }
-
-    private void onStickClick() {
-        activity.bottomGallery.setCurrentItem(StickerFragment.INDEX);
-        activity.stickerFragment.onShow();
     }
 
     private void onFilterClick() {

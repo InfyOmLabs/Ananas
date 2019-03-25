@@ -52,11 +52,6 @@ class ImageEditorIntentBuilder @JvmOverloads constructor(private val context: Co
         return this
     }
 
-    fun withStickerFeature(): ImageEditorIntentBuilder {
-        intent.putExtra(STICKER_FEATURE, true)
-        return this
-    }
-
     fun withSourcePath(sourcePath: String): ImageEditorIntentBuilder {
         intent.putExtra(SOURCE_PATH, sourcePath)
         return this

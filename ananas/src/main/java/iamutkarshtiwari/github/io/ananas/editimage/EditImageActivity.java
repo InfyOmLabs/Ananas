@@ -37,7 +37,6 @@ import iamutkarshtiwari.github.io.ananas.editimage.fragment.MainMenuFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.PaintFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.RotateFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.SaturationFragment;
-import iamutkarshtiwari.github.io.ananas.editimage.fragment.StickerFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.interfaces.OnMainBitmapChangeListener;
 import iamutkarshtiwari.github.io.ananas.editimage.utils.BitmapUtils;
 import iamutkarshtiwari.github.io.ananas.editimage.utils.PermissionUtils;
@@ -65,7 +64,6 @@ public class EditImageActivity extends BaseActivity {
     public static final String IMAGE_IS_EDIT = "image_is_edit";
 
     public static final int MODE_NONE = 0;
-    public static final int MODE_STICKERS = 1;
     public static final int MODE_FILTER = 2;
     public static final int MODE_CROP = 3;
     public static final int MODE_ROTATE = 4;
@@ -102,7 +100,6 @@ public class EditImageActivity extends BaseActivity {
 
     public CustomViewPager bottomGallery;
     private MainMenuFragment mainMenuFragment;
-    public StickerFragment stickerFragment;
     public FilterListFragment filterListFragment;
     public CropFragment cropFragment;
     public RotateFragment rotateFragment;
@@ -184,7 +181,6 @@ public class EditImageActivity extends BaseActivity {
 
         BottomGalleryAdapter bottomGalleryAdapter = new BottomGalleryAdapter(
                 this.getSupportFragmentManager());
-        stickerFragment = StickerFragment.newInstance();
         filterListFragment = FilterListFragment.newInstance();
         cropFragment = CropFragment.newInstance();
         rotateFragment = RotateFragment.newInstance();
@@ -259,9 +255,6 @@ public class EditImageActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         switch (mode) {
-            case MODE_STICKERS:
-                stickerFragment.backToMain();
-                break;
             case MODE_FILTER:
                 filterListFragment.backToMain();
                 break;
@@ -392,8 +385,6 @@ public class EditImageActivity extends BaseActivity {
             switch (index) {
                 case MainMenuFragment.INDEX:
                     return mainMenuFragment;
-                case StickerFragment.INDEX:
-                    return stickerFragment;
                 case FilterListFragment.INDEX:
                     return filterListFragment;
                 case CropFragment.INDEX:
@@ -483,9 +474,6 @@ public class EditImageActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
             switch (mode) {
-                case MODE_STICKERS:
-                    stickerFragment.applyStickers();
-                    break;
                 case MODE_FILTER:
                     filterListFragment.applyFilterImage();
                     break;
