@@ -24,18 +24,14 @@ import android.view.View.OnClickListener;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.isseiaoki.simplecropview.CropImageView;
-
 import iamutkarshtiwari.github.io.ananas.BaseActivity;
 import iamutkarshtiwari.github.io.ananas.R;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.AddTextFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.BeautyFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.BrightnessFragment;
-import iamutkarshtiwari.github.io.ananas.editimage.fragment.CropFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.FilterListFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.MainMenuFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.PaintFragment;
-import iamutkarshtiwari.github.io.ananas.editimage.fragment.RotateFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.SaturationFragment;
 import iamutkarshtiwari.github.io.ananas.editimage.interfaces.OnMainBitmapChangeListener;
 import iamutkarshtiwari.github.io.ananas.editimage.utils.BitmapUtils;
@@ -43,9 +39,7 @@ import iamutkarshtiwari.github.io.ananas.editimage.utils.PermissionUtils;
 import iamutkarshtiwari.github.io.ananas.editimage.view.BrightnessView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.CustomPaintView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.CustomViewPager;
-import iamutkarshtiwari.github.io.ananas.editimage.view.RotateImageView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.SaturationView;
-import iamutkarshtiwari.github.io.ananas.editimage.view.StickerView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.TextStickerView;
 import iamutkarshtiwari.github.io.ananas.editimage.view.imagezoom.ImageViewTouch;
 import iamutkarshtiwari.github.io.ananas.editimage.view.imagezoom.ImageViewTouchBase;
@@ -65,8 +59,6 @@ public class EditImageActivity extends BaseActivity {
 
     public static final int MODE_NONE = 0;
     public static final int MODE_FILTER = 2;
-    public static final int MODE_CROP = 3;
-    public static final int MODE_ROTATE = 4;
     public static final int MODE_TEXT = 5;
     public static final int MODE_PAINT = 6;
     public static final int MODE_BEAUTY = 7;
@@ -90,9 +82,6 @@ public class EditImageActivity extends BaseActivity {
 
     public ViewFlipper bannerFlipper;
 
-    public StickerView mStickerView;
-    public CropImageView mCropPanel;
-    public RotateImageView mRotatePanel;
     public TextStickerView mTextStickerView;
     public CustomPaintView mPaintView;
     public BrightnessView mBrightnessView;
@@ -101,8 +90,6 @@ public class EditImageActivity extends BaseActivity {
     public CustomViewPager bottomGallery;
     private MainMenuFragment mainMenuFragment;
     public FilterListFragment filterListFragment;
-    public CropFragment cropFragment;
-    public RotateFragment rotateFragment;
     public AddTextFragment addTextFragment;
     public PaintFragment paintFragment;
     public BeautyFragment beautyFragment;
@@ -167,9 +154,6 @@ public class EditImageActivity extends BaseActivity {
             }
         });
 
-        mStickerView = findViewById(R.id.sticker_panel);
-        mCropPanel = findViewById(R.id.crop_panel);
-        mRotatePanel = findViewById(R.id.rotate_panel);
         mTextStickerView = findViewById(R.id.text_sticker_panel);
         mPaintView = findViewById(R.id.custom_paint_view);
         mBrightnessView = findViewById(R.id.brightness_panel);
@@ -182,8 +166,6 @@ public class EditImageActivity extends BaseActivity {
         BottomGalleryAdapter bottomGalleryAdapter = new BottomGalleryAdapter(
                 this.getSupportFragmentManager());
         filterListFragment = FilterListFragment.newInstance();
-        cropFragment = CropFragment.newInstance();
-        rotateFragment = RotateFragment.newInstance();
         paintFragment = PaintFragment.newInstance();
         beautyFragment = BeautyFragment.newInstance();
         brightnessFragment = BrightnessFragment.newInstance();
@@ -257,12 +239,6 @@ public class EditImageActivity extends BaseActivity {
         switch (mode) {
             case MODE_FILTER:
                 filterListFragment.backToMain();
-                break;
-            case MODE_CROP:
-                cropFragment.backToMain();
-                break;
-            case MODE_ROTATE:
-                rotateFragment.backToMain();
                 break;
             case MODE_TEXT:
                 addTextFragment.backToMain();
@@ -387,10 +363,6 @@ public class EditImageActivity extends BaseActivity {
                     return mainMenuFragment;
                 case FilterListFragment.INDEX:
                     return filterListFragment;
-                case CropFragment.INDEX:
-                    return cropFragment;
-                case RotateFragment.INDEX:
-                    return rotateFragment;
                 case AddTextFragment.INDEX:
                     return addTextFragment;
                 case PaintFragment.INDEX:
@@ -476,12 +448,6 @@ public class EditImageActivity extends BaseActivity {
             switch (mode) {
                 case MODE_FILTER:
                     filterListFragment.applyFilterImage();
-                    break;
-                case MODE_CROP:
-                    cropFragment.applyCropImage();
-                    break;
-                case MODE_ROTATE:
-                    rotateFragment.applyRotateImage();
                     break;
                 case MODE_TEXT:
                     addTextFragment.applyTextImage();

@@ -139,8 +139,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .withAddText()
                     .withPaintFeature()
                     .withFilterFeature()
-                    .withRotateFeature()
-                    .withCropFeature()
                     .withBrightnessFeature()
                     .withSaturationFeature()
                     .withBeautyFeature()

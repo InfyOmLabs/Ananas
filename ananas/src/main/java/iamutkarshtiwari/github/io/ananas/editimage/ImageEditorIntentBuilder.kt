@@ -27,16 +27,6 @@ class ImageEditorIntentBuilder @JvmOverloads constructor(private val context: Co
         return this
     }
 
-    fun withRotateFeature(): ImageEditorIntentBuilder {
-        intent.putExtra(ROTATE_FEATURE, true)
-        return this
-    }
-
-    fun withCropFeature(): ImageEditorIntentBuilder {
-        intent.putExtra(CROP_FEATURE, true)
-        return this
-    }
-
     fun withBrightnessFeature(): ImageEditorIntentBuilder {
         intent.putExtra(BRIGHTNESS_FEATURE, true)
         return this
